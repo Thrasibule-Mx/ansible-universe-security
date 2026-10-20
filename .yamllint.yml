@@ -1,0 +1,35 @@
+# .yamllint.yml
+# =============
+#
+# Copying
+# -------
+#
+# Copyright (c) 2026 universe.security authors and contributors.
+#
+# This file is part of the *universe.security* project.
+#
+# *universe.security* is a free software project. You can redistribute it and/or
+# modify it following the terms of the MIT License.
+#
+# This software project is distributed *as is*, WITHOUT WARRANTY OF ANY KIND;
+# including but not limited to the WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+# PARTICULAR PURPOSE and NONINFRINGEMENT.
+#
+# You should have received a copy of the MIT License along with
+# *universe.security*. If not, see <http://opensource.org/licenses/MIT>.
+#
+extends: "default"
+
+rules:
+  comments:
+    require-starting-space: false
+  document-start:
+    present: false
+  indentation:
+    spaces: 2
+  line-length:
+    max: 160
+  quoted-strings:
+    required: true
+    quote-type: "double"
+    allow-quoted-quotes: true

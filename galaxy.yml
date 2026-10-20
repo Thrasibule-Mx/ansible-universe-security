@@ -1,0 +1,42 @@
+# galaxy.yaml
+# ===========
+#
+# Copying
+# -------
+#
+# Copyright (c) 2026 universe.security authors and contributors.
+#
+# This file is part of the *universe.security* project.
+#
+# *universe.security* is a free software project. You can redistribute it and/or
+# modify it following the terms of the MIT License.
+#
+# This software project is distributed *as is*, WITHOUT WARRANTY OF ANY KIND;
+# including but not limited to the WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+# PARTICULAR PURPOSE and NONINFRINGEMENT.
+#
+# You should have received a copy of the MIT License along with
+# *universe.security*. If not, see <http://opensource.org/licenses/MIT>.
+#
+namespace: "universe"
+name: "security"
+description: "A set of Ansible roles to manage security."
+version: "0.1.0"
+readme: "README.md"
+authors:
+  - "See AUTHORS.rst"
+license_file: "LICENSE.rst"
+tags:
+  - "security"
+  - "pki"
+  - "infrastructure"
+repository: "https://github.com/x237net/ansible-universe-security"
+issues: "https://github.com/x237net/ansible-universe-security/issues"
+build_ignore:
+  - ".*"
+  - "*.lock"
+  - "**/.*"
+  - "**/*.lock"
+  - "changelogs/fragments"
+  - "changelogs/fragments/*/**"
+  - "pyproject.toml"
