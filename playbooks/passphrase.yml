@@ -1,0 +1,40 @@
+# playbooks/passphrase.yml
+# ========================
+#
+# Copying
+# -------
+#
+# Copyright (c) 2026 universe.security authors and contributors.
+#
+# This file is part of the *universe.security* project.
+#
+# *universe.security* is a free software project. You can redistribute it
+# and/or modify it following the terms of the MIT License.
+#
+# This software project is distributed *as is*, WITHOUT WARRANTY OF ANY KIND;
+# including but not limited to the WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+# PARTICULAR PURPOSE and NONINFRINGEMENT.
+#
+# You should have received a copy of the MIT License along with
+# *universe.security*. If not, see <http://opensource.org/licenses/MIT>.
+#
+- name: "Passphrase"
+  hosts: "{{ playbook_hosts | default('localhost') }}"
+  gather_facts: false
+  vars_prompt:
+    - name: "_playbook_passphrase_words_count"
+      prompt: "Words"
+      default: "6"
+      private: false
+    - name: "passphrase_words_separator"
+      prompt: "Separator"
+      default: "-"
+      private: false
+  vars:
+    passphrase_words_count: "{{ _playbook_passphrase_words_count | int }}"
+  roles:
+    - "universe.security.passphrase"
+  tasks:
+    - name: "Display passphrase"
+      ansible.builtin.debug:
+        msg: "{{ passphrase_result }}"

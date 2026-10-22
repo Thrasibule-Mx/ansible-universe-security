@@ -1,0 +1,43 @@
+# roles/passphrase/tasks/main.yml
+# ===============================
+#
+# Copying
+# -------
+#
+# Copyright (c) 2026 universe.security authors and contributors.
+#
+# This file is part of the *universe.security* project.
+#
+# *universe.security* is a free software project. You can redistribute it
+# and/or modify it following the terms of the MIT License.
+#
+# This software project is distributed *as is*, WITHOUT WARRANTY OF ANY KIND;
+# including but not limited to the WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+# PARTICULAR PURPOSE and NONINFRINGEMENT.
+#
+# You should have received a copy of the MIT License along with
+# *universe.security*. If not, see <http://opensource.org/licenses/MIT>.
+#
+- name: "Generate passphrase sequences"
+  ansible.builtin.set_fact:
+    _passphrase_sequences: >-
+      {%- set sequences = [] -%}
+      {%- for _ in range(passphrase_words_count) -%}
+        {%- set _ = sequences.append(
+          lookup(
+            'community.general.random_string',
+            length=5,
+            override_all='123456',
+          )
+        ) -%}
+      {%- endfor -%}
+      {{ sequences }}
+
+- name: "Set passphrase"
+  ansible.builtin.set_fact:
+    passphrase_result: >-
+      {{
+        _passphrase_sequences
+        | map('ansible.builtin.extract', passphrase_words)
+        | join(passphrase_words_separator)
+      }}
